@@ -14,15 +14,11 @@ int main(){
   char act;
   char ult;
   char pen;
-  int x=2;
-  int c=0;
   int lado;
   int toFill;
   int numChars=-1;
   int simNum;
   int k;
-
-  typedef char s[20];
 
   printf("Lado del Rombo?");
   scanf("%i",&lado);
@@ -53,12 +49,6 @@ int main(){
 
     if (j>=numChars/2 && numChars>9 && i%2==1){
       k=(j+2)%4;
-
-      if (c%2==1){
-      x=x+2;
-      }
-
-      c=c+1;
     }
     else{
       k=j%4;
@@ -91,18 +81,11 @@ int main(){
    printf("@");
   }
 
-  for (int j=0;j<toFill;j++){
-     printf(" ");
-  }
+
 
   printf("\n");
 
-  if (i>4 && i< lado){
-    x=x+2;
-  }
-  else if (i<lado*2-5 ){
-    x=x-2;
-  }
+
 
 
 
