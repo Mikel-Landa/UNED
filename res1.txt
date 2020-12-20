@@ -1,0 +1,4 @@
+The process cannot access the file because it is being used by another process.
+==========================================================
+<<ERROR>>: no se pudo ejecutar el fichero 'C:\Users\Mikel\Desktop\Codigo\practica_2.exe'
+==========================================================

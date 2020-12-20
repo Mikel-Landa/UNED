@@ -1,0 +1,63 @@
+Ejecutando pruebas The process cannot access the file because it is being used by another process.
+The process cannot access the file because it is being used by another process.
+
+==========================================================
+Rombo correcto (para lado = -2):
+
+
+----------------------------------------------------------
+Rombo obtenido:
+
+==========================================================
+Correcto!
+==========================================================
+The process cannot access the file because it is being used by another process.
+The process cannot access the file because it is being used by another process.
+
+==========================================================
+Rombo correcto (para lado = -1):
+
+
+----------------------------------------------------------
+Rombo obtenido:
+
+==========================================================
+Correcto!
+==========================================================
+The process cannot access the file because it is being used by another process.
+The process cannot access the file because it is being used by another process.
+
+==========================================================
+Rombo correcto (para lado = 0):
+
+
+----------------------------------------------------------
+Rombo obtenido:
+
+==========================================================
+Correcto!
+==========================================================
+The process cannot access the file because it is being used by another process.
+The process cannot access the file because it is being used by another process.
+
+==========================================================
+Rombo correcto (para lado = 1):
+
+@
+
+----------------------------------------------------------
+Rombo obtenido:
+
+==========================================================
+
+==========================================================
+<< ERROR FORMATO DE ROMBO DE SALIDA NO CORRECTO >>
+==========================================================
+Rombo correcto (para lado = 1):
+
+@
+
+----------------------------------------------------------
+Rombo obtenido:
+
+==========================================================
