@@ -32,7 +32,7 @@ int getDay(int year, int month) {
 
 void printHead(int y,int m){
     int n;
-    printf("\n");
+    printf("\n\t\t");
     switch (m)
     {
     case 13:
@@ -95,7 +95,7 @@ void printHead(int y,int m){
     for (int i = 0; i < 27;i++){
         printf("=");
     }
-    printf("\n");
+    printf("\n\t\t");
 
     printf("LU");
     printf("  MA");
@@ -104,7 +104,7 @@ void printHead(int y,int m){
     printf("  VI ");
     printf("| SA");
     printf("  DO");
-    printf("\n");
+    printf("\n\t\t");
     for (int i = 0; i < 27;i++){
         printf("=");
     }
@@ -160,6 +160,7 @@ void PrintCalendar(PrintDays days,int m,int y) {
     if(m==4 && y==1601){
         startDay=0;
     }
+    printf("\t\t");
     for (int i = 0; i < startDay;i++){
         if(c%7==4){
             printf("   ");
@@ -211,7 +212,7 @@ void PrintCalendar(PrintDays days,int m,int y) {
             printf("--  ", i);
         }
         if (c%7==6){
-            printf("\n");
+            printf("\n\t\t");
         }
         c++;
         d++;

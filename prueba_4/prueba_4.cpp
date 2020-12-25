@@ -189,8 +189,47 @@ void FarmaDron::calendarioMensual(int m, int y)
           }
         }
     }
-    PrintCalendar(days,m,y);
+    /* PrintCalendar(days,m,y); */
 
+}
+
+void FarmaDron::manejarApp(){
+    char respuesta;
+    printf("  FarmaDron: Distribuci%cn de F%crmacos con Dron\n", o, a);
+    printf("\tAlta nuevo paciente%10(Pulsar A)\n");
+    printf("\tUbicar pacientes%10(Pulsar U)\n");
+    printf("\tNuevo pedido%10(Pulsar N)\n");
+    printf("\tLista diaria de pedidos%10(Pulsar L)\n");
+    printf("\tCalendario mensual de pedidos%10(Pulsar C)\n");
+    printf("\tSalir%10(Pulsar S)\n");
+    printf("Teclear una opción v%clida (A|U|N|L|C|S)?\n", a);
+    scanf(&respuesta);
+    printf("%c", respuesta);
+    switch (respuesta)
+    {
+    case 'A':
+        nuevoPaciente();
+        break;
+    case 'u':
+        ubicarPacientes();
+        break;
+    case 'N':
+        nuevoPedido();
+        break;
+    case 'L':
+        listaDiaria();
+        break;
+    case 'A':
+        calendarioMensual();
+        break;
+    case 'A':
+        return;
+
+    default:
+        printf("Opci%cn incorrecta, por fvor int%cntelo otra vez\n\\n", o, e);
+        manejarApp();
+        break;
+    }
 }
 
 /* -----------OPERACIONES------------------------------------------------------- */
@@ -366,9 +405,10 @@ FarmaDron inicializarPrograma(){
 int main(){
     FarmaDron dron;
     dron = inicializarPrograma();
-    dron.ubicarPacientes();
+    dron.manejarApp();
+    /* dron.ubicarPacientes();
     dron.listaDiaria();
-    dron.calendarioMensual(12,2020);
+    dron.calendarioMensual(12,2020); */
     return 0;
 }
 
