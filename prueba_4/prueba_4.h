@@ -59,11 +59,11 @@ typedef struct FarmaDron{
     int pushPedido(Pedido p);
     void nuevoPaciente();
     void ubicarPacientes();
-    void nuevoPedido(bool nuevo_pedido,bool nuevo_paciente);
+    void nuevoPedido(bool nuevo_pedido,bool nuevo_paciente,Pedido p);
     void inicializarClase();
     void listaDiaria();
     void ordenarPedidos();
     int calcularOrden(Pedido p);
-    void calendarioMensual(int m, int y);
+    void calendarioMensual();
     void manejarApp();
 };

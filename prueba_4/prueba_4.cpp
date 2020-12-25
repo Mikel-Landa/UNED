@@ -4,7 +4,7 @@
 #include <string.h>
 #include "practica_3.h"
 typedef Node *pTemp;
-
+Pedido ped;
 /* caracteres especiales */
 int A = 181;
 int a = 160;
@@ -63,9 +63,10 @@ void FarmaDron::nuevoPaciente(){
         getchar();
         nuevoPaciente();
     }
+    manejarApp();
 }
 
-void FarmaDron::nuevoPedido(bool nuevo_pedido,bool nuevo_paciente){
+void FarmaDron::nuevoPedido(bool nuevo_pedido,bool nuevo_paciente,Pedido p){
     Pedido pedido;
     Medicamento medicamento;
     int und;
@@ -79,7 +80,7 @@ void FarmaDron::nuevoPedido(bool nuevo_pedido,bool nuevo_paciente){
         scanf("%d",&pedido.pacienteId);
         if (pedido.pacienteId>ultimoPaciente){
             printf("  Lo sentimos, referencia no v%clida\n\n\n",a);
-            nuevoPedido(false,true);
+            nuevoPedido(false,true,ped);
             return;
         }
         printf("\tN%cmero de env%cos? ",u,ii);
@@ -95,35 +96,53 @@ void FarmaDron::nuevoPedido(bool nuevo_pedido,bool nuevo_paciente){
         scanf("%d",&pedido.anyo);
         getchar();
     }
+    else{
+        pedido=p;
+    }
     printf("\tNombre f%crmaco (Entre 1 y 20 caracteres)? ",a);
     gets(medicamento.nombre);
     printf("\tPeso f%crmaco (Menor de 3000 gramos)? ",a);
     scanf("%d",&medicamento.peso);
-
+    getchar();
     printf("\tUnidades de f%crmaco? ",a);
     scanf("%d",&und);
+    if (und>5){
+        getchar();
+        printf("El pedido es inv%clido, el %cltimo medicamento no se guardar%c\n",a,u,a);
+        nuevoPedido(false,false,pedido);
+        return;
+    }
 
+    if (pedido.pushMedicamento(medicamento, und)!=0){
+        getchar();
+        printf("El listado de medicamentos est%c lleno\n",a);
+    }
+    if (pedido.pesoTotal>3000 || pedido.nMed>4){
+        printf("El pedido es inv%clido,int%cntelo otra vez\n",a,e);
+        getchar();
+        nuevoPedido(false,false,ped);
+        return;
+    }
     printf("\tOtro f%crmaco (S/N)? ",a);
     scanf("%s",&otro);
-    if (pedido.pushMedicamento(medicamento, und)!=0){
-        printf("El listado de medicamentos est%c lleno\n",a);
+    if (otro=='S'){
+        getchar();
+        nuevoPedido(false,false,pedido);
+        return;
     }
     if(pushPedido(pedido)!=0){
         printf("El listado de pedidos est%c lleno, se va a terminar la operaci%cn\n\n\n",a,o);
         return;
     }
-    if (otro=='S'){
-        getchar();
-        nuevoPedido(false,false);
-        return;
-    }
+
     printf("\tOtro pedido (S/N)? ");
     scanf("%s",&otro);
     printf("\n\n\n");
     if (otro=='S'){
         getchar();
-        nuevoPedido(false,true);
+        nuevoPedido(false,true,ped);
     }
+    manejarApp();
 }
 
 void FarmaDron::ubicarPacientes(){
@@ -135,6 +154,7 @@ void FarmaDron::ubicarPacientes(){
         printf("\n");
     }
     printf("\n\n\n");
+    manejarApp();
 }
 
 void FarmaDron::listaDiaria(){
@@ -159,6 +179,7 @@ void FarmaDron::listaDiaria(){
         printf("\n\n\n");
         }
     }
+    manejarApp();
 }
 int maxf(int a,int b){
     if (a>b){
@@ -167,12 +188,21 @@ int maxf(int a,int b){
     return b;
 }
 
-void FarmaDron::calendarioMensual(int m, int y)
+void FarmaDron::calendarioMensual()
 {
     PrintDays days;
     int dia;
-    int min = y * 10000 + m * 100;
-    int max = y * 10000 + (m + 1) * 100;
+    int m;
+    int y;
+    int min;
+    int max;
+    printf("Mes?");
+    scanf("%d",&m);
+    printf("A%co?",ny);
+    scanf("%d",&y);
+    min = y * 10000 + m * 100;
+    max = y * 10000 + (m + 1) * 100;
+
     for (int i=0; i < maxf(ultimoPedido,31);i++)
     {
         if (min<calcularOrden(pedidos[i]) && calcularOrden(pedidos[i])<max){
@@ -189,46 +219,50 @@ void FarmaDron::calendarioMensual(int m, int y)
           }
         }
     }
-    /* PrintCalendar(days,m,y); */
+
+    PrintCalendar(days,m,y);
+    manejarApp();
 
 }
 
 void FarmaDron::manejarApp(){
     char respuesta;
     printf("  FarmaDron: Distribuci%cn de F%crmacos con Dron\n", o, a);
-    printf("\tAlta nuevo paciente%10(Pulsar A)\n");
-    printf("\tUbicar pacientes%10(Pulsar U)\n");
-    printf("\tNuevo pedido%10(Pulsar N)\n");
-    printf("\tLista diaria de pedidos%10(Pulsar L)\n");
-    printf("\tCalendario mensual de pedidos%10(Pulsar C)\n");
-    printf("\tSalir%10(Pulsar S)\n");
-    printf("Teclear una opción v%clida (A|U|N|L|C|S)?\n", a);
-    scanf(&respuesta);
-    printf("%c", respuesta);
+    printf("\tAlta nuevo paciente\t\t   (Pulsar A)\n",' ');
+    printf("\tUbicar pacientes\t\t   (Pulsar U)\n",' ');
+    printf("\tNuevo pedido\t\t\t   (Pulsar N)\n",' ');
+    printf("\tLista diaria de pedidos\t\t   (Pulsar L)\n",' ');
+    printf("\tCalendario mensual de pedidos\t   (Pulsar C)\n",' ');
+    printf("\tSalir\t\t\t\t   (Pulsar S)\n",' ');
+    printf("  Teclear una opci%Cn v%clida (A|U|N|L|C|S)? ",o, a);
+
+    scanf("%s",&respuesta);
+    getchar();
     switch (respuesta)
     {
     case 'A':
         nuevoPaciente();
         break;
-    case 'u':
+    case 'U':
         ubicarPacientes();
         break;
     case 'N':
-        nuevoPedido();
+        nuevoPedido(true,true,ped);
         break;
     case 'L':
         listaDiaria();
         break;
-    case 'A':
+    case 'C':
         calendarioMensual();
         break;
-    case 'A':
-        return;
+    case 'S':
+        printf("Terminando programa...");
+        break;
 
     default:
-        printf("Opci%cn incorrecta, por fvor int%cntelo otra vez\n\\n", o, e);
+        printf("  Opci%cn incorrecta, por f%cvor int%cntelo otra vez\n\n", o,a, e);
         manejarApp();
-        break;
+
     }
 }
 
