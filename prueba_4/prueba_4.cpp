@@ -140,14 +140,16 @@ void FarmaDron::ubicarPacientes(){
 void FarmaDron::listaDiaria(){
 
     int mes, anyo, dia;
+    int sum;
     printf("  D%ca? ",ii);
     scanf("%d",&dia);
     printf("  Mes? ");
     scanf("%d",&mes);
     printf("  A%co? ",ny);
     scanf("%d",&anyo);
-
+    sum = anyo*10000+mes*100+dia;
     for (int i=0; i < ultimoPedido;i++){
+        if(calcularOrden(pedidos[i])==sum){
         printf("\tPedido %d\n", i);
         printf("  Ubicaci%cn destino: Distancia: %d y Angulo: %d\n", o, pacientes[pedidos[i].pacienteId].distancia, pacientes[pedidos[i].pacienteId].angulo);
         for (int k = 0;k<pedidos[i].nMed;k++){
@@ -155,29 +157,40 @@ void FarmaDron::listaDiaria(){
         }
         printf("\t\t        Peso total del env%co: %12d gramos" ,ii, pedidos[i].pesoTotal);
         printf("\n\n\n");
+        }
     }
+}
+int maxf(int a,int b){
+    if (a>b){
+      return a;
+    }
+    return b;
 }
 
 void FarmaDron::calendarioMensual(int m, int y)
 {
     PrintDays days;
-    day d;
-    int decenas;
+    int dia;
     int min = y * 10000 + m * 100;
     int max = y * 10000 + (m + 1) * 100;
-    for (int i=0; i < ultimoPedido;i++)
+    for (int i=0; i < maxf(ultimoPedido,31);i++)
     {
         if (min<calcularOrden(pedidos[i]) && calcularOrden(pedidos[i])<max){
-            decenas=i/10;
-            d[0]=decenas;
-            d[1]=i%10;
-            strcpy(days[i],d);
+            dia=pedidos[i].dia-1;
+            days[dia]=1;
+            if (days[i]!=1){
+              days[i]=0;
+            }
+
         }
         else if (i<31){
-            strcpy(days[i],"--");
+          if (days[i]!=1){
+            days[i]=0;
+          }
         }
     }
-    PrintCalendar(days, m, y);
+    PrintCalendar(days,m,y);
+
 }
 
 /* -----------OPERACIONES------------------------------------------------------- */

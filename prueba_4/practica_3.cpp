@@ -176,39 +176,39 @@ void PrintCalendar(PrintDays days,int m,int y) {
     }
     for (int i = 0; i <monthDays;i++){
         if (c%7==6){
-            if (d>9){
-                printf("%0s", days[i]);
+            if (days[i]==1 ){
+                printf("%02d", i+1);
             }
             else{
-            printf(" %0s", days[i]);
+            printf(" --");
             }
         }
         else if (c%7==4){
-            if (d<10){
-                printf(" %0s ", days[i]);
+            if (days[i]==1){
+                printf("%02d ", i+1);
             }
             else
             {
-                printf("%0s ", days[i]);
+                printf("-- ", i+1);
             }
 
         }
         else if (c%7==5)
         {
-            if (d > 9)
+            if (days[i]==1)
             {
-                printf("| %0s  ",days[i]);
+                printf("| %02d  ",i+1);
             }
             else
             {
-                printf("|  %0s  ", days[i]);
+                printf("| -- ", i+1);
             }
         }
-        else if (d>9){
-            printf("%0s  ", days[i]);
+        else if (days[i]==1){
+            printf("%02d  ", i+1);
         }
         else{
-            printf(" %0s  ", days[i]);
+            printf("--  ", i);
         }
         if (c%7==6){
             printf("\n");
@@ -227,18 +227,18 @@ void PrintCalendar(PrintDays days,int m,int y) {
     for (int i = 0;i<7-remain;i++)
     {
         if (c%7==6){
-            printf(" --");
+            printf("   ");
         }
         else if(c%7==4){
-            printf(" -- ");
+            printf("   ");
         }
         else if (c%7==5)
         {
-            printf("|  --  ");
+            printf("|    ");
         }
         else
         {
-            printf(" --  ");
+            printf("     ");
         }
         c++;
 
