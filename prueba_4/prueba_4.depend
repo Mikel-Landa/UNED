@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1608899202 source:c:\users\mikel\desktop\codigo\prueba_4\prueba_4.cpp
+	"prueba_4.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_3.h"
+
+1608897692 c:\users\mikel\desktop\codigo\prueba_4\prueba_4.h
+
+1608898894 c:\users\mikel\desktop\codigo\prueba_4\practica_3.h
+
+1608899255 source:c:\users\mikel\desktop\codigo\prueba_4\practica_3.cpp
+	<stdio.h>
+	"practica_3.h"
+

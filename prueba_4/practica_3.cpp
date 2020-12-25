@@ -6,17 +6,17 @@
 * EMAIL: #mlanda34@alumno.uned.es#
 ***************************************/
 #include <stdio.h>
-
+#include "practica_3.h"
 
 bool checkBi(int y){
-  if (y%4!=0){
-    return false;
-  }
-  else if (y%100==0 && y%400!=0){
-    return false;
-  }
+    if (y%4!=0){
+        return false;
+    }
+    else if (y%100==0 && y%400!=0){
+        return false;
+    }
 
-  return true;
+    return true;
 
 }
 
@@ -128,75 +128,68 @@ int getStartDay(int m,int y) {
 }
 
 
-int main() {
+void PrintCalendar(PrintDays days,int m,int y) {
 
     int startDay;
     int d=1;
     int c = 0;
     int remain;
-    int m;
-    int y;
     int monthDays;
-    printf("Mes (1..12)?");
 
-    scanf("%i", &m);
-    printf("Anyo (1601..3000)?");
-
-    scanf("%i", &y);
     if (y>3000 || y<1601 || m>12 || m<1){
-      return 0;
+        return;
     }
 
 
 
     if(m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12){
-      monthDays=31;
+        monthDays=31;
     }
     else if(m==2){
-      if (checkBi(y)){
+        if (checkBi(y)){
         monthDays=29;
-      }
-      else{
+        }
+        else{
         monthDays=28;
-      }
+        }
     }
     else{
-     monthDays=30;
+        monthDays=30;
     }
     startDay=(getStartDay(m,y)+5)%7;
     if(m==4 && y==1601){
-      startDay=0;
+        startDay=0;
     }
     for (int i = 0; i < startDay;i++){
         if(c%7==4){
-            printf(" . ");
+            printf("   ");
         }
         else if (c%7==5)
         {
-            printf("|  .  ");
+            printf("|     ");
         }
         else
         {
-            printf(" .  ");
+            printf("    ");
         }
         c++;
     }
     for (int i = 0; i <monthDays;i++){
         if (c%7==6){
-          if (d>9){
-            printf("%i", d);
-          }
-          else{
-             printf(" %i", d);
-          }
+            if (d>9){
+                printf("%0s", days[i]);
+            }
+            else{
+            printf(" %0s", days[i]);
+            }
         }
         else if (c%7==4){
             if (d<10){
-                printf(" %i ", d);
+                printf(" %0s ", days[i]);
             }
             else
             {
-                printf("%i ", d);
+                printf("%0s ", days[i]);
             }
 
         }
@@ -204,18 +197,18 @@ int main() {
         {
             if (d > 9)
             {
-                printf("| %i  ",d);
+                printf("| %0s  ",days[i]);
             }
             else
             {
-                printf("|  %i  ", d);
+                printf("|  %0s  ", days[i]);
             }
         }
         else if (d>9){
-            printf("%i  ", d);
+            printf("%0s  ", days[i]);
         }
         else{
-            printf(" %i  ", d);
+            printf(" %0s  ", days[i]);
         }
         if (c%7==6){
             printf("\n");
@@ -226,7 +219,7 @@ int main() {
     }
     remain = (((d - 1) % 7) + startDay) % 7;
     if (remain==0){
-        return 0;
+        return;
     }
     if(m==2 && y==2601){
         remain=remain-1;
@@ -234,22 +227,24 @@ int main() {
     for (int i = 0;i<7-remain;i++)
     {
         if (c%7==6){
-            printf(" .");
+            printf(" --");
         }
         else if(c%7==4){
-            printf(" . ");
+            printf(" -- ");
         }
         else if (c%7==5)
         {
-            printf("|  .  ");
+            printf("|  --  ");
         }
         else
         {
-            printf(" .  ");
+            printf(" --  ");
         }
         c++;
 
     }
     printf("\n\n");
-    return 0;
+    return;
 }
+
+
