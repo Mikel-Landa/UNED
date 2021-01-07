@@ -161,6 +161,7 @@ void FarmaDron::listaDiaria(){
 
     int mes, anyo, dia;
     int sum;
+    int nPedido=1;
     printf("  D%ca? ",ii);
     scanf("%d",&dia);
     printf("  Mes? ");
@@ -170,20 +171,21 @@ void FarmaDron::listaDiaria(){
     sum = anyo*10000+mes*100+dia;
     for (int i=0; i < ultimoPedido;i++){
         if(calcularOrden(pedidos[i])==sum){
-        printf("\tPedido %d\n", i);
+        printf("\tPedido %d\n", nPedido);
         printf("  Ubicaci%cn destino: Distancia: %d y Angulo: %d\n", o, pacientes[pedidos[i].pacienteId].distancia, pacientes[pedidos[i].pacienteId].angulo);
         for (int k = 0;k<pedidos[i].nMed;k++){
             printf("\t%d Unidades\t%-10s\t\tPeso: %4d gramos\n", pedidos[i].cantidad[k], pedidos[i].medicamentos[k].nombre, pedidos[i].medicamentos[k].peso);
         }
         printf("\t\t        Peso total del env%co: %12d gramos" ,ii, pedidos[i].pesoTotal);
         printf("\n\n\n");
+        nPedido++;
         }
     }
     manejarApp();
 }
 int maxf(int a,int b){
     if (a>b){
-      return a;
+        return a;
     }
     return b;
 }
@@ -191,32 +193,25 @@ int maxf(int a,int b){
 void FarmaDron::calendarioMensual()
 {
     PrintDays days;
+    PrintDays days2;
     int dia;
     int m;
     int y;
     int min;
     int max;
-    printf("Mes?");
+    printf("  Mes?");
     scanf("%d",&m);
-    printf("A%co?",ny);
+    printf("  A%co?",ny);
     scanf("%d",&y);
     min = y * 10000 + m * 100;
     max = y * 10000 + (m + 1) * 100;
-
+    for (int i=0; i <31;i++){
+        days[i] = 0;
+    }
     for (int i=0; i < maxf(ultimoPedido,31);i++)
     {
         if (min<calcularOrden(pedidos[i]) && calcularOrden(pedidos[i])<max){
-            dia=pedidos[i].dia-1;
             days[dia]=1;
-            if (days[i]!=1){
-              days[i]=0;
-            }
-
-        }
-        else if (i<31){
-          if (days[i]!=1){
-            days[i]=0;
-          }
         }
     }
 
@@ -370,7 +365,7 @@ FarmaDron inicializarPrograma(){
     strcpy(p1.nombre,"Alberto Gomez");
     p1.angulo = 123;
     p1.distancia = 1235;
-    strcpy(p2.nombre,"Jimena martinez");
+    strcpy(p2.nombre,"Jimena Martinez");
     p2.angulo = 874;
     p2.distancia = 5874;
     strcpy(p3.nombre, "Pepe Gonzalez");

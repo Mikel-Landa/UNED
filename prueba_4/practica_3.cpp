@@ -32,7 +32,7 @@ int getDay(int year, int month) {
 
 void printHead(int y,int m){
     int n;
-    printf("\n\t\t");
+    printf("\n\t");
     switch (m)
     {
     case 13:
@@ -91,11 +91,11 @@ void printHead(int y,int m){
     for (int i = 0; i < 23 - n;i++){
         printf(" ");
     }
-    printf("%i\n", y);
+    printf("%i\n\t", y);
     for (int i = 0; i < 27;i++){
         printf("=");
     }
-    printf("\n\t\t");
+    printf("\n\t");
 
     printf("LU");
     printf("  MA");
@@ -104,7 +104,7 @@ void printHead(int y,int m){
     printf("  VI ");
     printf("| SA");
     printf("  DO");
-    printf("\n\t\t");
+    printf("\n\t");
     for (int i = 0; i < 27;i++){
         printf("=");
     }
@@ -135,7 +135,7 @@ void PrintCalendar(PrintDays days,int m,int y) {
     int c = 0;
     int remain;
     int monthDays;
-
+    printf("%d",days[1]);
     if (y>3000 || y<1601 || m>12 || m<1){
         return;
     }
@@ -160,7 +160,7 @@ void PrintCalendar(PrintDays days,int m,int y) {
     if(m==4 && y==1601){
         startDay=0;
     }
-    printf("\t\t");
+    printf("\t");
     for (int i = 0; i < startDay;i++){
         if(c%7==4){
             printf("   ");
@@ -181,7 +181,7 @@ void PrintCalendar(PrintDays days,int m,int y) {
                 printf("%02d", i+1);
             }
             else{
-            printf(" --");
+            printf("--");
             }
         }
         else if (c%7==4){
@@ -198,11 +198,11 @@ void PrintCalendar(PrintDays days,int m,int y) {
         {
             if (days[i]==1)
             {
-                printf("| %02d  ",i+1);
+                printf("| %02d ",i+1);
             }
             else
             {
-                printf("| -- ", i+1);
+                printf("| --  ", i+1);
             }
         }
         else if (days[i]==1){
@@ -212,7 +212,7 @@ void PrintCalendar(PrintDays days,int m,int y) {
             printf("--  ", i);
         }
         if (c%7==6){
-            printf("\n\t\t");
+            printf("\n\t");
         }
         c++;
         d++;
@@ -239,7 +239,7 @@ void PrintCalendar(PrintDays days,int m,int y) {
         }
         else
         {
-            printf("     ");
+            printf("    ");
         }
         c++;
 
