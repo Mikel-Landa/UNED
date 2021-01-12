@@ -1,0 +1,31 @@
+# depslib dependency file v1.0
+1609529228 source:c:\users\mikel\desktop\codigo\prueba_4\prueba_4.cpp
+	"prueba_4.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_3.h"
+
+1609527028 c:\users\mikel\desktop\codigo\prueba_4\prueba_4.h
+
+1608919369 c:\users\mikel\desktop\codigo\prueba_4\practica_3.h
+
+1609529313 source:c:\users\mikel\desktop\codigo\prueba_4\practica_3.cpp
+	<stdio.h>
+	"practica_3.h"
+
+1608926263 source:c:\users\mikel\onedrive\desktop\uned\prueba_4\prueba_4.cpp
+	"prueba_4.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_3.h"
+
+1608926282 c:\users\mikel\onedrive\desktop\uned\prueba_4\prueba_4.h
+
+1608921830 c:\users\mikel\onedrive\desktop\uned\prueba_4\practica_3.h
+
+1608921830 source:c:\users\mikel\onedrive\desktop\uned\prueba_4\practica_3.cpp
+	<stdio.h>
+	"practica_3.h"
+

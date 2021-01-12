@@ -1,0 +1,40 @@
+# depslib dependency file v1.0
+1610057594 source:c:\users\mikel\onedrive\desktop\uned\prueba_4\practica_3.cpp
+	<stdio.h>
+	"practica_3.h"
+
+1608921830 c:\users\mikel\onedrive\desktop\uned\prueba_4\practica_3.h
+
+1610057594 source:c:\users\mikel\onedrive\desktop\uned\prueba_4\prueba_4.cpp
+	"prueba_4.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_3.h"
+
+1608926282 c:\users\mikel\onedrive\desktop\uned\prueba_4\prueba_4.h
+
+1610128384 source:c:\users\mikel\onedrive\desktop\uned\practica_5\practica_5.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_5.h"
+
+1610128133 c:\users\mikel\onedrive\desktop\uned\practica_5\practica_5.h
+	"prueba_4/prueba_4.h"
+
+1610061051 c:\users\mikel\onedrive\desktop\uned\practica_5\prueba_4\prueba_4.h
+
+1610061051 source:c:\users\mikel\onedrive\desktop\uned\practica_5\prueba_4\practica_3.cpp
+	<stdio.h>
+	"practica_3.h"
+
+1610061051 c:\users\mikel\onedrive\desktop\uned\practica_5\prueba_4\practica_3.h
+
+1610061240 source:c:\users\mikel\onedrive\desktop\uned\practica_5\prueba_4\prueba_4.cpp
+	"prueba_4.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_3.h"
+

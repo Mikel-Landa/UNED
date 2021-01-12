@@ -2,9 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "practica_5.h"
-#include "../prueba_4/prueba_4.h"
-
-
 
 void Gestor_FarmaDron::IniciarGestion(){
 
@@ -284,7 +281,7 @@ void Gestor_FarmaDron::IniciarGestion(){
     strcpy(a4.municipio,"Madrid");
     strcpy(a4.descripcion,"Somos juerguistas, punto.");
 
-    a1.dron = d1;
+    a5.dron = d5;
     strcpy(a1.calle,"Calle Joaquin Costa, 12");
     strcpy(a1.provincia,"Zaragoza");
     strcpy(a1.municipio,"Zaragoza");
@@ -363,13 +360,138 @@ void Gestor_FarmaDron::IniciarGestion(){
     a2.dron.pacientes[7] = p8;
     a2.dron.pacientes[8] = p9;
     a2.dron.pacientes[9] = p10;
+    for (int i=0;i<10;i++){
+        if (i<5){
+            filled[i]=1;
+        }
+        else{
+            filled[i]=NULL;
+        }
+    }
 
 }
+void Gestor_FarmaDron::AltaAlmacen(){
+    Almacen almacen;
+    FarmaDron dron;
+    int aId;
+    char c;
+    almacen.dron=dron;
+    printf("  Alta nuevo almac%cn:\n",130);
+    printf("\tIdentificador almacen (cod. de almacen 1 a 10)? ");
+    scanf("%d",&aId);
+    getchar();
+    if(aId>10 || aId<1){
+        printf("Identificador incorrecto, terminando el metodo");
+        return;
+    }
+    aId--;
+    printf("\tDireccion almacen? (entre 1 y 48 caracteres) ");
+    gets(almacen.calle);
+
+    printf("\tMunicipio almacen? (entre 1 y 48 caracteres) ");
+    gets(almacen.municipio);
+
+    printf("\tProvincia almacen? (entre 1 y 16 caracteres) ");
+    gets(almacen.provincia);
+
+    printf("\tDescripcion almacen? (entre 1 y 48 caracteres) ");
+    gets(almacen.descripcion);
+
+    printf("  Datos correctos (S/N)? ");
+    scanf("%s",&c);
+
+    if (c=='S'){
+        if (filled[aId]==NULL){
+            almacenes[aId]=almacen;
+            filled[aId]=1;
+            return;
+        }
+        for (int i=0;i<10;i++){
+            if (filled[i]==NULL){
+                almacenes[i]=almacen;
+                filled[i]=1;
+                return;
+            }
+        }
+        printf("Todos los registros estan ocupados, ¿que almacen desea sustituir? ");
+        scanf("%d",&aId);
 
 
+        if(aId>10 || aId<1){
+            printf("Identificador incorrecto, terminando el metodo");
 
+            return;
+        }
+        aId--;
+        almacenes[aId]=almacen;
+        filled[aId]=1;
+        return;
+    }
+
+    AltaAlmacen();
+}
+
+void Gestor_FarmaDron::GestionarApp(){
+    char respuesta;
+    printf("  GESTI%cN DE FarmaDrones: Distribuci%cn de F%crmacos\n", 224,162, 160);
+    printf("\tIniciar gestion\t\t\t\t (Pulsar I)\n");
+    printf("\tAlta almacen\t\t\t\t (Pulsar M)\n");
+    printf("\tAlta paciente almacen\t\t\t (Pulsar A)\n");
+    printf("\tUbicar pacientes\t\t\t (Pulsar U)\n");
+    printf("\tNuevo pedido\t\t\t\t (Pulsar N)\n");
+    printf("\tLista diaria de pedidos\t\t\t (Pulsar L)\n");
+    printf("\tProgramar rutas diarias del dron\t (Pulsar P)\n");
+    printf("\tRepresentar rutas diarias del dron\t (Pulsar R)\n");
+    printf("\tSalir\t\t\t\t\t (Pulsar S)\n");
+    printf("  Teclear una opcion valida (I|M|A|U|N|L|C|P|R|S)? ");
+    scanf("%s",&respuesta);
+    printf("\n\n\n");
+    switch (respuesta)
+    {
+    // case 'A':
+    //     AltaPacienteAlmacen();
+    //     GestionarApp();
+    //     break;
+    // case 'U':
+    //     UbicarPacientes();
+    //     GestionarApp();
+    //     break;
+    // case 'N':
+    //     NuevoPedido();
+    //     GestionarApp();
+    //     break;
+    // case 'L':
+    //     ListaDiariaPedidos();
+    //     GestionarApp();
+    //     break;
+    // case 'P':
+    //     ProgramarRutasDron();
+    //     GestionarApp();
+    //     break;
+    // case 'R':
+    //     DibujarRutasDron();
+    //     GestionarApp();
+    //     break;
+    case 'M':
+        AltaAlmacen();
+        GestionarApp();
+        break;
+    case 'I':
+        IniciarGestion();
+        GestionarApp();
+        break;
+    case 'S':
+        printf("  Terminando programa...");
+        break;
+
+    default:
+        printf("  Opcion incorrecta, por facvor intentelo otra vez\n\n\n");
+        GestionarApp();
+
+    }
+}
 int main(){
     Gestor_FarmaDron gestor;
-
+    gestor.GestionarApp();
     return 0;
 }
