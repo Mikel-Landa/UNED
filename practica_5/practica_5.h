@@ -19,7 +19,7 @@ typedef struct Gestor_FarmaDron{
     void GestionarApp();
     void IniciarGestion();
     void AltaAlmacen();
-    void AltaPacienteAlmacen();
+    void AltaPacienteAlmacen(bool fresh);
     void UbicarPacientes();
     void NuevoPedido();
     void ListaDiariaPedidos();

@@ -221,44 +221,7 @@ void FarmaDron::calendarioMensual()
 }
 
 void FarmaDron::manejarApp(){
-    char respuesta;
-    printf("  FarmaDron: Distribuci%cn de F%crmacos con Dron\n", o, a);
-    printf("\tAlta nuevo paciente\t\t   (Pulsar A)\n",' ');
-    printf("\tUbicar pacientes\t\t   (Pulsar U)\n",' ');
-    printf("\tNuevo pedido\t\t\t   (Pulsar N)\n",' ');
-    printf("\tLista diaria de pedidos\t\t   (Pulsar L)\n",' ');
-    printf("\tCalendario mensual de pedidos\t   (Pulsar C)\n",' ');
-    printf("\tSalir\t\t\t\t   (Pulsar S)\n",' ');
-    printf("  Teclear una opci%Cn v%clida (A|U|N|L|C|S)? ",o, a);
-
-    scanf("%s",&respuesta);
-    getchar();
-    switch (respuesta)
-    {
-    case 'A':
-        nuevoPaciente();
-        break;
-    case 'U':
-        ubicarPacientes();
-        break;
-    case 'N':
-        nuevoPedido(true,true,ped);
-        break;
-    case 'L':
-        listaDiaria();
-        break;
-    case 'C':
-        calendarioMensual();
-        break;
-    case 'S':
-        printf("Terminando programa...");
-        break;
-
-    default:
-        printf("  Opci%cn incorrecta, por f%cvor int%cntelo otra vez\n\n", o,a, e);
-        manejarApp();
-
-    }
+    return;
 }
 
 /* -----------OPERACIONES------------------------------------------------------- */

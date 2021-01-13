@@ -38,3 +38,27 @@
 	<string.h>
 	"practica_3.h"
 
+1610575621 source:c:\users\mikel\desktop\codigo\practica_5\prueba_4\practica_3.cpp
+	<stdio.h>
+	"practica_3.h"
+
+1610575621 c:\users\mikel\desktop\codigo\practica_5\prueba_4\practica_3.h
+
+1610579118 source:c:\users\mikel\desktop\codigo\practica_5\prueba_4\prueba_4.cpp
+	"prueba_4.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_3.h"
+
+1610575621 c:\users\mikel\desktop\codigo\practica_5\prueba_4\prueba_4.h
+
+1610575621 source:c:\users\mikel\desktop\codigo\practica_5\practica_5.cpp
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"practica_5.h"
+
+1610575621 c:\users\mikel\desktop\codigo\practica_5\practica_5.h
+	"prueba_4/prueba_4.h"
+

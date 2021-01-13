@@ -318,7 +318,6 @@ void Gestor_FarmaDron::IniciarGestion(){
     a1.dron.ultimoPedido = 15;
 
     /* segunda tanda pacientes */
-
     strcpy(p1.nombre,"Dionisia Tena");
     p1.angulo = 1849;
     p1.distancia = 6704;
@@ -360,6 +359,14 @@ void Gestor_FarmaDron::IniciarGestion(){
     a2.dron.pacientes[7] = p8;
     a2.dron.pacientes[8] = p9;
     a2.dron.pacientes[9] = p10;
+
+    almacenes[0] = a1;
+    almacenes[1] = a2;
+    almacenes[2] = a3;
+    almacenes[3] = a4;
+    almacenes[4] = a5;
+
+
     for (int i=0;i<10;i++){
         if (i<5){
             filled[i]=1;
@@ -369,6 +376,7 @@ void Gestor_FarmaDron::IniciarGestion(){
         }
     }
 
+    return;
 }
 void Gestor_FarmaDron::AltaAlmacen(){
     Almacen almacen;
@@ -431,9 +439,64 @@ void Gestor_FarmaDron::AltaAlmacen(){
     AltaAlmacen();
 }
 
+void Gestor_FarmaDron::AltaPacienteAlmacen(bool fresh){
+    int aId;
+    char c;
+    Paciente p;
+    if (fresh){
+        printf("  Alta nuevo paciente: \n\n");
+    printf("\tCodigo almacen? (entre 1-10) ");
+    }
+    scanf("%d", &aId);
+    printf("\n\n  Datos paciente:\n\n");
+    if(aId>10 || aId<1){
+        printf("Identificador incorrecto, terminando el metodo");
+        return;
+    }
+    aId--;
+    printf("\tIdentificador paciente (entre 1 y 20 caracteres)? ");
+    getchar();
+    gets(p.nombre);
+    printf("\tDistancia (hasta 10000 metros a plena carga)? ");
+    scanf("%d", &p.distancia);
+    printf("\tAngulo (entre 0 y 2000 milesimas de pi radianes)? ");
+    scanf("%d", &p.angulo);
+
+    if (p.angulo>2000 || p.distancia>12500 || p.distancia<1 ||p.angulo<0){
+        printf("  El angulo o la distancia son incorrectos");
+        return;
+    }
+    printf("\n\n  Datos correctos (S/N)? ");
+    scanf("%s", &c);
+    if (c=='N'){
+        printf("\n\n\n");
+        AltaPacienteAlmacen(false);
+        return;
+    }
+    almacenes[aId].dron.pushPaciente(p);
+    printf("  Otro paciente mismo almacen (S/N)? ");
+    scanf("%s", &c);
+    if (c=='S'){
+        printf("\n\n\n");
+        AltaPacienteAlmacen(false);
+        return;
+    }
+    return;
+}
+
+void Gestor_FarmaDron::UbicarPacientes(){
+    int aId;
+    printf("  Lista de pacientes y su ubicacion: \n\n");
+    printf("\tCodigo almacen? ");
+    scanf("%d", &aId);
+    printf("\n\n");
+    almacenes[aId].dron.ubicarPacientes();
+    return;
+}
 void Gestor_FarmaDron::GestionarApp(){
     char respuesta;
-    printf("  GESTI%cN DE FarmaDrones: Distribuci%cn de F%crmacos\n", 224,162, 160);
+    printf("\n\n\n");
+    printf("  GESTION DE FarmaDrones: Distribuci%cn de F%crmacos\n",162, 160);
     printf("\tIniciar gestion\t\t\t\t (Pulsar I)\n");
     printf("\tAlta almacen\t\t\t\t (Pulsar M)\n");
     printf("\tAlta paciente almacen\t\t\t (Pulsar A)\n");
@@ -448,14 +511,14 @@ void Gestor_FarmaDron::GestionarApp(){
     printf("\n\n\n");
     switch (respuesta)
     {
-    // case 'A':
-    //     AltaPacienteAlmacen();
-    //     GestionarApp();
-    //     break;
-    // case 'U':
-    //     UbicarPacientes();
-    //     GestionarApp();
-    //     break;
+    case 'A':
+        AltaPacienteAlmacen(true);
+        GestionarApp();
+        break;
+    case 'U':
+        UbicarPacientes();
+        GestionarApp();
+        break;
     // case 'N':
     //     NuevoPedido();
     //     GestionarApp();
@@ -489,9 +552,13 @@ void Gestor_FarmaDron::GestionarApp(){
         GestionarApp();
 
     }
+    return;
 }
 int main(){
     Gestor_FarmaDron gestor;
+    gestor.IniciarGestion();
+    printf("%s", gestor.almacenes[0].dron.pacientes[0].nombre);
     gestor.GestionarApp();
+
     return 0;
 }
